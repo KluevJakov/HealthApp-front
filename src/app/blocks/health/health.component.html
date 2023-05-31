@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title w-100 d-flex align-items-center justify-content-center">Узнать о здоровье</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <div class="container d-flex align-items-center flex-column mobile-container">
+        <div class="d-flex flex-wrap justify-content-center mb-3">
+            <span class="badge rounded-pill custom-badge m-1" 
+            *ngFor="let s of symptoms" [ngClass]="s.choosen ? 'bg-secondary' : 'bg-light'" (click)="chooseSymptom(s.id)">{{s.name}}</span>
+        </div>
+        <input class="form-control form-btn-custom" type="button" value="Перейти в чат">
+    </div>
+</div>

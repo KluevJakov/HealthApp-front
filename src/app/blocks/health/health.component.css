@@ -1,0 +1,17 @@
+.modal-header {
+    background: #22B5BE;
+    color: white;
+}
+
+.custom-badge {
+    width: 150px;
+    cursor: unset;
+    color: #22B5BE;
+    transition: 0.5s;
+}
+
+.custom-badge:hover {
+    background-color: black;
+    cursor: pointer;
+    transition: 0.5s;
+}

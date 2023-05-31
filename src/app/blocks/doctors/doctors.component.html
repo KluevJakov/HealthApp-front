@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title w-100 d-flex align-items-center justify-content-center">Врачи</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <div class="container d-flex align-items-center flex-column mobile-container">
+        <ng-container *ngIf="doctors">
+            <div class="list-group w-100">
+                <div class="list-group-item custom-list-item d-flex align-items-center justify-content-between" *ngFor="let doc of doctors">
+                    <img class="avatar" src="https://hospitalassuta.ru/wp-content/uploads/2018/03/Depositphotos_32524605_s-2015-300x200.jpg">
+                    <div>{{doc.name + " - " + doc.prof}}</div>
+                    <img class="chat-btn" src="assets/icons/bubbles.svg" width="40px" alt="@"/>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
