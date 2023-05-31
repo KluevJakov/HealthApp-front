@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/auth.service';
 import { Symptom } from 'src/app/entity/symptom';
 import { environment } from 'src/environments/environment';
+import { ChatComponent } from '../chat/chat.component';
 
 const API_URL: string = environment.apiUrl;
 
@@ -16,7 +17,8 @@ export class HealthComponent implements OnInit {
   
   symptoms!: Array<Symptom>;
 
-  constructor(public activeModal: NgbActiveModal,
+  constructor(private modalService: NgbModal, 
+    public activeModal: NgbActiveModal,
     private http: HttpClient,
     private authService: AuthService) {
     
@@ -24,6 +26,13 @@ export class HealthComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSymptoms();
+  }
+
+  chat() {
+    const currentModal = this.modalService.open(ChatComponent, {fullscreen: true, scrollable: true});
+    currentModal.componentInstance.symptoms = this.symptoms.filter(e => e.choosen);
+    currentModal.componentInstance.isInit = true;
+    this.activeModal.close();
   }
 
   chooseSymptom(id: number) {

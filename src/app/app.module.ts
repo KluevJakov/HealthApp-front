@@ -14,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ReactiveFormsModule } from '@angular/forms';
+import localeRu from '@angular/common/locales/ru'
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [

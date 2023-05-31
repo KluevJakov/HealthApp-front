@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h4 class="modal-title w-100 d-flex align-items-center justify-content-center">Чат</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <div class="container d-flex align-items-center flex-column mobile-container">
+        <ng-container *ngIf="chat">
+            <div class="list-group w-100 lgc">
+                <div class="list-group-item lgi" *ngFor="let m of chat.messages">
+                     {{m.text}}
+                    <div class="lgb"><div>{{m.date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div><div>{{m.sender.name}}</div></div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

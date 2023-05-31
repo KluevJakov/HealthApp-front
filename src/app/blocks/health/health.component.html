@@ -8,6 +8,6 @@
             <span class="badge rounded-pill custom-badge m-1" 
             *ngFor="let s of symptoms" [ngClass]="s.choosen ? 'bg-secondary' : 'bg-light'" (click)="chooseSymptom(s.id)">{{s.name}}</span>
         </div>
-        <input class="form-control form-btn-custom" type="button" value="Перейти в чат">
+        <input class="form-control form-btn-custom" type="button" (click)="chat()" value="Перейти в чат">
     </div>
 </div>
