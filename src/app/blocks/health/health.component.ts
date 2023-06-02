@@ -29,7 +29,7 @@ export class HealthComponent implements OnInit {
   }
 
   chat() {
-    const currentModal = this.modalService.open(ChatComponent, {fullscreen: true, scrollable: true});
+    const currentModal = this.modalService.open(ChatComponent, {fullscreen: true, scrollable: true, windowClass: 'chatModal'});
     currentModal.componentInstance.symptoms = this.symptoms.filter(e => e.choosen);
     currentModal.componentInstance.isInit = true;
     this.activeModal.close();

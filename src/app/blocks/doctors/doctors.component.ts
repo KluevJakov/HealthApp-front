@@ -20,8 +20,7 @@ export class DoctorsComponent implements OnInit {
   doctors!: Array<User>;
 
   constructor(private http: HttpClient,
-    public activeModal: NgbActiveModal, 
-    ) {
+    public activeModal: NgbActiveModal) {
     
   }
 

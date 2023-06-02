@@ -28,11 +28,12 @@
 .lgc {
     display: flex;
     flex-direction: column-reverse;
-    height: 100vh;
+    overflow: auto;
 }
 
 .lgi {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
+    border-top-width: 1 !important;
 }
 
 .lgb {

@@ -4,6 +4,14 @@
 </div>
 <div class="modal-body">
     <div class="container d-flex align-items-center flex-column mobile-container">
-        
+        <ng-container *ngIf="chats">
+            <div class="list-group w-100">
+                <div class="list-group-item custom-list-item d-flex align-items-center justify-content-between" *ngFor="let c of chats">
+                    <img class="avatar" src="https://hospitalassuta.ru/wp-content/uploads/2018/03/Depositphotos_32524605_s-2015-300x200.jpg">
+                    <div>{{c.members[1].prof + " - " + c.members[1].name}}</div>
+                    <img class="chat-btn" src="assets/icons/bubbles.svg" (click)="chat(c)" width="40px" alt="@"/>
+                </div>
+            </div>
+        </ng-container>
     </div>
 </div>

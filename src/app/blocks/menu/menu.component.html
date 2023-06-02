@@ -1,7 +1,15 @@
 <div class="container d-flex align-items-center flex-column mobile-container">
-    <input class="form-control mb-3 mt-3 form-btn-custom" type="button" (click)="openProfileModal()" value="Профиль">
-    <input class="form-control mb-3 form-btn-custom" type="button" (click)="openHealthModal()" value="Узнать о здоровье">
-    <input class="form-control mb-3 form-btn-custom" type="button" (click)="openDoctorsModal()" value="Врачи">
-    <input class="form-control mb-3 form-btn-custom" type="button" (click)="openTreatModal()" value="Мои обращения">
-    <input class="form-control form-btn-custom-exit" type="button" (click)="logout()" value="Выйти">
+    <ng-container *ngIf="user">
+        <input class="form-control mb-3 mt-3 form-btn-custom" type="button" (click)="openProfileModal()" value="Профиль">
+        <ng-container *ngIf="user.roles[0].name == 'USER'">
+            <input class="form-control mb-3 form-btn-custom" type="button" (click)="openHealthModal()" value="Узнать о здоровье">
+            <input class="form-control mb-3 form-btn-custom" type="button" (click)="openDoctorsModal()" value="Врачи">
+        </ng-container>
+        <ng-container *ngIf="user.roles[0].name == 'DOCTOR'">
+            <input class="form-control mb-3 form-btn-custom" type="button" (click)="openHealthModal()" value="Консиллиум">
+            <input class="form-control mb-3 form-btn-custom" type="button" (click)="openDoctorsModal()" value="Пациенты">
+        </ng-container>
+        <input class="form-control mb-3 form-btn-custom" type="button" (click)="openTreatModal()" value="Мои обращения">
+        <input class="form-control form-btn-custom-exit" type="button" (click)="logout()" value="Выйти">
+    </ng-container>
 </div>

@@ -54,3 +54,8 @@
     color: white;
     transition: 0.4s;
 }
+
+
+.chatModal {
+    height: 100%;
+}

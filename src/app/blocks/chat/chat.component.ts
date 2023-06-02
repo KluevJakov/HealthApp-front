@@ -3,7 +3,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription, interval } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
+import { MessageToChat } from 'src/app/entity/MessageToChat';
 import { Chat } from 'src/app/entity/chat';
 import { Message } from 'src/app/entity/message';
 import { Symptom } from 'src/app/entity/symptom';
@@ -22,9 +24,11 @@ const API_URL: string = environment.apiUrl;
 export class ChatComponent implements OnInit {
 
   @Input() symptoms!: Array<Symptom>;
-  isInit: boolean = false;
-  chat!: Chat;
+  @Input() isInit: boolean = false;
+  @Input() chat!: Chat;
   user!: User;
+  newMessage!: MessageToChat;
+  subscription!: Subscription;
 
   constructor(private http: HttpClient,
     public activeModal: NgbActiveModal, 
@@ -33,9 +37,48 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.isInit) {
       this.getCurrentUser();
-    }
+    
+    (document.getElementsByClassName("chatModal")[0]
+    .getElementsByClassName('component-host-scrollable')[0] as HTMLElement)
+    .style.height = '100%';
+
+    this.newMessage = new MessageToChat({});
+    this.newMessage.message = new Message({});
+
+    this.subscription = interval(1000).subscribe(x => {
+      if (this.http) {
+        this.refreshChat();
+      }
+    });
+  }
+
+  refreshChat() {
+    this.http.get<any>(API_URL + '/chats/'+this.chat.id, AuthService.getJwtHeaderJSON())
+    .subscribe({
+      next: this.process4.bind(this),
+      error: this.handleError.bind(this)
+    });
+  }
+
+  process4(chat : Chat) {
+    this.chat = chat;
+  }
+
+  sendMessage() {
+    this.newMessage.chatId = this.chat.id;
+    this.newMessage.message.sender = this.user;
+    this.http.post<any>(API_URL + '/chats/send', this.newMessage)
+    .subscribe({
+      error: this.handleError.bind(this),
+      next: this.process3.bind(this)
+    });
+  }
+
+  process3() {
+    //сообщение сохранено на сервере
+    this.newMessage = new MessageToChat({});
+    this.newMessage.message = new Message({});
   }
 
   generateText():string {
@@ -60,9 +103,7 @@ export class ChatComponent implements OnInit {
       members: null
     };
 
-    console.log(request);
-
-    this.http.post<any>(API_URL + '/chat', request)
+    this.http.post<any>(API_URL + '/chats', request)
     .subscribe({
       error: this.handleError.bind(this),
       next: this.process.bind(this)
@@ -75,24 +116,24 @@ export class ChatComponent implements OnInit {
 
   process(chat: Chat) {
     this.chat = chat;
-    console.log(chat);
   }
 
   getCurrentUser() {
     this.http.get<any>(API_URL + '/users?id='+AuthService.getCurrentUser().id)
     .subscribe({
-      error: this.handleError2.bind(this),
+      error: this.handleError.bind(this),
       next: this.process2.bind(this)
     });
   }
 
-  handleError2(error : HttpErrorResponse) {
-    console.log("error");
-  }
-
   process2(user : User) {
     this.user = user;
-    console.log(this.user);
-    this.create();
+    if (this.isInit) {
+      this.create();
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
