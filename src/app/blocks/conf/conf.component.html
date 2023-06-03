@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title w-100 d-flex align-items-center justify-content-center">Консиллиум</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <div class="container d-flex align-items-center flex-column mobile-container">
+        <div class="input-group">
+            <span class="input-group-text transparent form-custom">
+                <img class="svg-invert" src="assets/icons/search.svg" width="20px" alt="@"/>
+            </span>
+            <input class="form-control mb-2 form-custom" id="searchField" type="text" placeholder="Поиск.." (keyup)="getDoctors()">
+        </div>
+        <input class="form-control form-btn-custom mb-2" type="button" (click)="chat()" value="Создать встречу">
+        <ng-container *ngIf="doctors">
+            <div>Выбранные:</div>
+            <div class="list-group w-100">
+                <div class="list-group-item custom-list-item d-flex align-items-center justify-content-between doctorElem" 
+                *ngFor="let doc of selectedDocs" (click)="deleteDoc(doc)">
+                    <img class="avatar" src="{{doc.avatar}}">
+                    <div>{{doc.name + " - " + doc.prof}}</div>
+                </div>
+            </div>
+            <hr style="width: 100%;">
+            <div>Список врачей:</div>
+            <div class="list-group w-100">
+                <div class="list-group-item custom-list-item d-flex align-items-center justify-content-between doctorElem" 
+                *ngFor="let doc of doctors" (click)="chooseDoc(doc)">
+                    <img class="avatar" src="{{doc.avatar}}">
+                    <div>{{doc.name + " - " + doc.prof}}</div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

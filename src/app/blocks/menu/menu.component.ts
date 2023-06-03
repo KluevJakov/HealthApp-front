@@ -8,6 +8,7 @@ import { TreatComponent } from '../treat/treat.component';
 import { AuthService } from 'src/app/auth.service';
 import { User } from 'src/app/entity/user';
 import { UsersComponent } from '../users/users.component';
+import { ConfComponent } from '../conf/conf.component';
 
 @Component({
   selector: 'app-menu',
@@ -46,6 +47,10 @@ export class MenuComponent implements OnInit {
 
   openTreatModal() {
     this.modalService.open(TreatComponent, {fullscreen: true, scrollable: true});
+  }
+
+  openConfModal() {
+    this.modalService.open(ConfComponent, {fullscreen: true, scrollable: true});
   }
 
   logout() {

@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit {
 
   @Input() symptoms!: Array<Symptom>;
   @Input() isInit: boolean = false;
-  @Input() forUser!: User;
+  @Input() forUser!: Array<User>;
   @Input() chat!: Chat;
   user!: User;
   newMessage!: MessageToChat;
@@ -94,13 +94,15 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  createForUser(member: User) {
+  createForUser(member: Array<User>) {
     let initMessage = new Message({});
     initMessage.sender = this.user;
     initMessage.text = this.generateText();
 
-    let initMembers = [];
-    initMembers.push(member);
+    let initMembers: User[] = [];
+    member.forEach(e => {
+      initMembers.push(e);
+    });
 
     let request = {
       message: initMessage,
