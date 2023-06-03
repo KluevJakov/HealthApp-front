@@ -33,12 +33,6 @@ export class AuthService implements CanActivate {
         return new User(JSON.parse(sessionStorage.getItem('user')!));
     }
 
-    static getCurrentUserObject() {
-        if (sessionStorage.getItem('user') != null) {
-            return JSON.parse(sessionStorage.getItem('user')!);
-        }
-    }
-
     static getJwtHeaderJSON() {
         return { headers: { 'Content-Type': 'application/json' } };
     }
