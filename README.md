@@ -1,27 +1,39 @@
 # HealthAppFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
+- компоненты
+-- chat
+Все чаты: врач-пациент, пациент-врач, врач-врач-N'
+Чат можно создать из компонентов (doctors, users, health);
+Созданные чаты можно просматривать и открывать через treat;
 
-## Development server
+-- conf
+Создание консилиума. Возможен полнотекстовый поиск по врачам.
+Выбираются >= 1 врача. Если меньше - кнопка создания не активна.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+-- doctors
+Список врачей с поиском.
 
-## Code scaffolding
+-- header
+Заголовочный блок, встраивается на каждую страничку и тянет статическую переменную заголовка текущей страницы.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-- health
+Страница создания обращения с симптомами.
 
-## Build
+-- index
+Страница входа
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+-- menu
+Меню пользователя.
 
-## Running unit tests
+-- profile
+Профиль пользователя.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-- register
+Регистрация пациента или врача.
+В зависимости от кнопки появляются дополнительные поля.
 
-## Running end-to-end tests
+-- treat
+Список обращений, возможно удаление.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+-- users
+Список пациентов с поиском.
