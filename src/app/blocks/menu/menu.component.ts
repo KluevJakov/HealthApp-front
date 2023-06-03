@@ -7,6 +7,7 @@ import { DoctorsComponent } from '../doctors/doctors.component';
 import { TreatComponent } from '../treat/treat.component';
 import { AuthService } from 'src/app/auth.service';
 import { User } from 'src/app/entity/user';
+import { UsersComponent } from '../users/users.component';
 
 @Component({
   selector: 'app-menu',
@@ -37,6 +38,10 @@ export class MenuComponent implements OnInit {
 
   openDoctorsModal() {
     this.modalService.open(DoctorsComponent, {fullscreen: true, scrollable: true});
+  }
+
+  openUsersModal() {
+    this.modalService.open(UsersComponent, {fullscreen: true, scrollable: true});
   }
 
   openTreatModal() {

@@ -4,14 +4,19 @@
 </div>
 <div class="modal-body">
     <div class="container d-flex align-items-center flex-column mobile-container" *ngIf="user">
-        <div class="mb-4">
-            <img class="avatar" src="https://cdn2.static1-sima-land.com/items/6281512/0/700-nw.jpg">
+        <div class="d-flex flex-column align-items-center mb-4">
+            <img class="avatar" src="{{user.avatar}}">
+            <input class="form-control mb-2 mt-1 form-custom" type="text" placeholder="Ссылка на аватар" [(ngModel)]="user.avatar">
         </div>
         <input class="form-control mb-2 form-custom" type="text" placeholder="Имя" [(ngModel)]="user.name">
         <input class="form-control mb-2 form-custom" type="email" placeholder="Почта" [(ngModel)]="user.email">
         <input class="form-control mb-2 form-custom" type="text" placeholder="Номер телефона" [(ngModel)]="user.phone">
         <input class="form-control mb-2 form-custom" type="text" placeholder="Адрес" [(ngModel)]="user.address">
         <input class="form-control mb-2 form-custom" type="text" placeholder="О себе" [(ngModel)]="user.about">
+        <ng-container *ngIf="user.roles[0].id == 2">
+            <input class="form-control mb-2 form-custom" type="text" placeholder="Образование" [(ngModel)]="user.edu">
+            <input class="form-control mb-2 form-custom" type="text" placeholder="Специализация" [(ngModel)]="user.prof">
+        </ng-container>
         <input class="form-control mb-3 form-btn-custom" type="button" (click)="update()" value="Обновить профиль">
     </div>
 </div>

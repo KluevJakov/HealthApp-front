@@ -7,7 +7,7 @@
         </ng-container>
         <ng-container *ngIf="user.roles[0].name == 'DOCTOR'">
             <input class="form-control mb-3 form-btn-custom" type="button" (click)="openHealthModal()" value="Консиллиум">
-            <input class="form-control mb-3 form-btn-custom" type="button" (click)="openDoctorsModal()" value="Пациенты">
+            <input class="form-control mb-3 form-btn-custom" type="button" (click)="openUsersModal()" value="Пациенты">
         </ng-container>
         <input class="form-control mb-3 form-btn-custom" type="button" (click)="openTreatModal()" value="Мои обращения">
         <input class="form-control form-btn-custom-exit" type="button" (click)="logout()" value="Выйти">

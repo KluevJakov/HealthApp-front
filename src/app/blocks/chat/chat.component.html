@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title w-100 d-flex align-items-center justify-content-center">Чат</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
 </div>
 <div class="modal-body h-100">
     <div class="container d-flex align-items-center flex-column mobile-container h-100">
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="w-100">
-                <input class="form-control mb-2 form-custom" type="text" placeholder="Сообщение.." [(ngModel)]="newMessage.message.text">
+                <input class="form-control mb-2 form-custom" type="text" placeholder="Сообщение.." (keyup.enter)="sendMessage()" [(ngModel)]="newMessage.message.text">
                 <input class="form-control mb-3 form-btn-custom" type="button" value="Отправить" (click)="sendMessage()">
             </div>
         </ng-container>

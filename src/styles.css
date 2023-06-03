@@ -4,6 +4,14 @@
 
 .text-color {
     color: #22B5BE;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.text-color a:hover{
+    color: #12777c;
+    text-decoration: none;
+    transition: .5s;
 }
 
 .form-custom {

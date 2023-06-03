@@ -11,6 +11,7 @@ export class User {
   edu!:string;
   prof!:string;
   password!:string;
+  avatar!:string;
 
   constructor(user:any){
     this.id = user.id;
@@ -23,5 +24,6 @@ export class User {
     this.edu = user.edu;
     this.prof = user.prof;
     this.password = user.password;
+    this.avatar = user.avatar;
   }
 }

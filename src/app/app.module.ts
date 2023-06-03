@@ -16,6 +16,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ReactiveFormsModule } from '@angular/forms';
 import localeRu from '@angular/common/locales/ru'
 import { registerLocaleData } from '@angular/common';
+import { RegisterComponent } from './blocks/register/register.component';
 
 registerLocaleData(localeRu);
 

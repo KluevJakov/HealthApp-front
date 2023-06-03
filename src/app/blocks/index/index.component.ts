@@ -37,6 +37,8 @@ export class IndexComponent implements OnInit {
   }
 
   login() {
+    if (this.user.email == null || this.user.email.trim().length == 0) {alert('Заполните поле "Электронная почта"');return;}
+    if (this.user.password == null || this.user.password.trim().length == 0) {alert('Заполните поле "Пароль"');return;}
     this.http.post<any>(API_URL + '/users/login', this.user)
     .subscribe({
       error: this.handleError.bind(this),

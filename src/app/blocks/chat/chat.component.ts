@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit {
 
   @Input() symptoms!: Array<Symptom>;
   @Input() isInit: boolean = false;
+  @Input() forUser!: User;
   @Input() chat!: Chat;
   user!: User;
   newMessage!: MessageToChat;
@@ -37,7 +38,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.getCurrentUser();
+    this.getCurrentUser();
     
     (document.getElementsByClassName("chatModal")[0]
     .getElementsByClassName('component-host-scrollable')[0] as HTMLElement)
@@ -83,7 +84,7 @@ export class ChatComponent implements OnInit {
 
   generateText():string {
     if (this.symptoms == null || this.symptoms.length == 0) {
-      return "Добрый день! Хочу обратиться с персональной консультацией!";
+      return "Добрый день! Начнём диалог!";
     } else {
       let formedMessage = "Добрый день! Хочу обратиться с консультацией! Симптомы заболевания: ";
       this.symptoms.forEach(e => {
@@ -93,10 +94,32 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  createForUser(member: User) {
+    let initMessage = new Message({});
+    initMessage.sender = this.user;
+    initMessage.text = this.generateText();
+
+    let initMembers = [];
+    initMembers.push(member);
+
+    let request = {
+      message: initMessage,
+      members: initMembers
+    };
+
+    this.http.post<any>(API_URL + '/chats', request)
+    .subscribe({
+      error: this.handleError.bind(this),
+      next: this.process.bind(this)
+    });
+  }
+
   create() {
     let initMessage = new Message({});
     initMessage.sender = this.user;
     initMessage.text = this.generateText();
+
+    let initMembers = [];
 
     let request = {
       message: initMessage,
@@ -129,7 +152,11 @@ export class ChatComponent implements OnInit {
   process2(user : User) {
     this.user = user;
     if (this.isInit) {
-      this.create();
+      if (this.forUser != null) {
+        this.createForUser(this.forUser);
+      } else {
+        this.create();
+      }
     }
   }
 

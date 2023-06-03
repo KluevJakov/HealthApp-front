@@ -24,21 +24,3 @@
     filter: invert(50%);
     transition: 0.5s;
 }
-
-.lgc {
-    display: flex;
-    flex-direction: column-reverse;
-    overflow: auto;
-}
-
-.lgi {
-    margin-bottom: 20px;
-    border-top-width: 1px !important;
-}
-
-.lgb {
-    display: flex;
-    justify-content: space-between;
-    font-size: small;
-    color: #acacac;
-}

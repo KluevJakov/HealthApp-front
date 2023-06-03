@@ -6,10 +6,44 @@
     <div class="container d-flex align-items-center flex-column mobile-container">
         <ng-container *ngIf="chats">
             <div class="list-group w-100">
-                <div class="list-group-item custom-list-item d-flex align-items-center justify-content-between" *ngFor="let c of chats">
-                    <img class="avatar" src="https://hospitalassuta.ru/wp-content/uploads/2018/03/Depositphotos_32524605_s-2015-300x200.jpg">
-                    <div>{{c.members[1].prof + " - " + c.members[1].name}}</div>
-                    <img class="chat-btn" src="assets/icons/bubbles.svg" (click)="chat(c)" width="40px" alt="@"/>
+                <div class="list-group-item custom-list-item d-flex align-items-center justify-content-between"
+                    *ngFor="let c of chats">
+                    <ng-container *ngIf="user.roles[0].id == 1">
+                        <ng-container *ngIf="c.members[0].roles[0].id == 1">
+                            <img class="avatar" src="{{c.members[1].avatar}}">
+                            <div>
+                                <div>{{c.members[1].prof + " - " + c.members[1].name}}</div>
+                                <div class="dateChat">{{c.messages[c.messages.length-1].date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="c.members[0].roles[0].id == 2">
+                            <img class="avatar" src="{{c.members[0].avatar}}">
+                            <div>
+                                <div>{{c.members[0].prof + " - " + c.members[0].name}}</div>
+                                <div class="dateChat">{{c.messages[c.messages.length-1].date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="user.roles[0].id == 2">
+                        <ng-container *ngIf="c.members[0].roles[0].id == 1">
+                            <img class="avatar" src="{{c.members[0].avatar}}">
+                            <div>
+                                <div>{{c.members[0].name}}</div>
+                                <div class="dateChat">{{c.messages[c.messages.length-1].date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="c.members[0].roles[0].id == 2">
+                            <img class="avatar" src="{{c.members[1].avatar}}">
+                            <div>
+                                <div>{{c.members[1].name}}</div>
+                                <div class="dateChat">{{c.messages[c.messages.length-1].date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <div class="funcs">
+                        <img class="chat-btn" src="assets/icons/bubbles.svg" (click)="chat(c)" width="20px" alt="@" />
+                        <img class="chat-btn" src="assets/icons/bin.svg" (click)="remove(c)" width="20px" alt="@" />
+                    </div>
                 </div>
             </div>
         </ng-container>

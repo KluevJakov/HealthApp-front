@@ -38,6 +38,22 @@ export class TreatComponent implements OnInit {
     const currentModal = this.modalService.open(ChatComponent, {fullscreen: true, scrollable: true, windowClass: 'chatModal'});
     currentModal.componentInstance.chat = chat;
     currentModal.componentInstance.isInit = false;
+    currentModal.result.then((data) => {
+      this.getChats();
+    },
+    (error) => {});
+  }
+
+  remove(chat : Chat) {
+    this.http.delete<any>(API_URL + '/chats?id='+chat.id)
+    .subscribe({
+      error: this.handleError.bind(this),
+      next: this.process3.bind(this)
+    });
+  }
+
+  process3() {
+    this.getChats();
   }
 
   getChats() {
@@ -59,13 +75,9 @@ export class TreatComponent implements OnInit {
   getCurrentUser() {
     this.http.get<any>(API_URL + '/users?id='+AuthService.getCurrentUser().id)
     .subscribe({
-      error: this.handleError2.bind(this),
+      error: this.handleError.bind(this),
       next: this.process2.bind(this)
     });
-  }
-
-  handleError2(error : HttpErrorResponse) {
-    console.log("error");
   }
 
   process2(user : User) {

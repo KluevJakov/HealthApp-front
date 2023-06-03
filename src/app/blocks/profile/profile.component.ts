@@ -45,13 +45,9 @@ export class ProfileComponent implements OnInit {
   getCurrentUser() {
     this.http.get<any>(API_URL + '/users?id='+AuthService.getCurrentUser().id)
     .subscribe({
-      error: this.handleError2.bind(this),
+      error: this.handleError.bind(this),
       next: this.process2.bind(this)
     });
-  }
-
-  handleError2(error : HttpErrorResponse) {
-    console.log("error");
   }
 
   process2(user : User) {

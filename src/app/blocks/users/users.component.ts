@@ -10,15 +10,15 @@ import { ChatComponent } from '../chat/chat.component';
 const API_URL: string = environment.apiUrl;
 
 @Component({
-  selector: 'app-doctors',
-  templateUrl: './doctors.component.html',
-  styleUrls: ['./doctors.component.css'],
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css'],
   standalone: true,
   imports: [CommonModule, FormsModule]
 })
-export class DoctorsComponent implements OnInit {
+export class UsersComponent implements OnInit {
   
-  doctors!: Array<User>;
+  users!: Array<User>;
 
   constructor(private modalService: NgbModal, 
     private http: HttpClient,
@@ -26,18 +26,19 @@ export class DoctorsComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
-    this.getDoctors();
-  }
-
-  chat() {
+  chat(user : User) {
     const currentModal = this.modalService.open(ChatComponent, {fullscreen: true, scrollable: true, windowClass: 'chatModal'});
     currentModal.componentInstance.isInit = true;
+    currentModal.componentInstance.forUser = user;
     this.activeModal.close();
   }
 
-  getDoctors() {
-    let req = '/users/doctors';
+  ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers() {
+    let req = '/users/users';
     let searchField = document.getElementById("searchField") as HTMLInputElement;
     if (searchField.value != null && searchField.value.trim().length != 0) {
       req += "?fts="+searchField.value;
@@ -53,7 +54,7 @@ export class DoctorsComponent implements OnInit {
     console.log("error");
   }
 
-  process(doctors : Array<User>) {
-    this.doctors = doctors;
+  process(users : Array<User>) {
+    this.users = users;
   }
 }
