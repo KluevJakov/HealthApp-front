@@ -10,7 +10,7 @@
             </span>
             <input class="form-control mb-2 form-custom" id="searchField" type="text" placeholder="Поиск.." (keyup)="getDoctors()">
         </div>
-        <input class="form-control form-btn-custom mb-2" type="button" (click)="chat()" value="Создать встречу">
+        <input class="form-control form-btn-custom mb-2" type="button" (click)="chat()" value="Создать встречу" [disabled]="selectedDocs.length == 0">
         <ng-container *ngIf="doctors">
             <div>Выбранные:</div>
             <div class="list-group w-100">

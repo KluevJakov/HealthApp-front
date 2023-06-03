@@ -32,21 +32,19 @@
                                 <div class="dateChat">{{c.messages[c.messages.length-1].date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div>
                             </div>
                         </ng-container>
-                        <ng-container *ngIf="c.members[0].roles[0].id == 2">
-                            <ng-container *ngIf="c.members.length == 2">
+                        <ng-container *ngIf="c.members[0].roles[0].id == 2 && c.members[1].roles[0].id == 1">
                                 <img class="avatar" src="{{c.members[1].avatar}}">
                                 <div>
                                     <div>{{c.members[1].name}}</div>
                                     <div class="dateChat">{{c.messages[c.messages.length-1].date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div>
                                 </div>
-                            </ng-container>
-                            <ng-container *ngIf="c.members.length != 2">
-                                <img class="avatar" src="assets/icons/bullhorn.svg">
-                                <div>
-                                    <div>Консиллиум</div>
-                                    <div class="dateChat">{{c.messages[c.messages.length-1].date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div>
-                                </div>
-                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="c.members[0].roles[0].id == 2 && c.members[1].roles[0].id == 2">
+                            <img class="avatar" src="assets/icons/bullhorn.svg">
+                            <div>
+                                <div>Консиллиум</div>
+                                <div class="dateChat">{{c.messages[c.messages.length-1].date | date: 'HH:mm:ss dd.MM.yy' : '' : 'ru'}}</div>
+                            </div>
                         </ng-container>
                     </ng-container>
                     <div class="funcs">
