@@ -30,9 +30,12 @@ export class DoctorsComponent implements OnInit {
     this.getDoctors();
   }
 
-  chat() {
+  chat(user : User) {
     const currentModal = this.modalService.open(ChatComponent, {fullscreen: true, scrollable: true, windowClass: 'chatModal'});
     currentModal.componentInstance.isInit = true;
+    let userArr = [];
+    userArr.push(user);
+    currentModal.componentInstance.forUser = userArr;
     this.activeModal.close();
   }
 

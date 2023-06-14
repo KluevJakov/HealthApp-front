@@ -15,7 +15,7 @@
                 <div class="list-group-item custom-list-item d-flex align-items-center justify-content-between" *ngFor="let doc of doctors">
                     <img class="avatar" src="{{doc.avatar}}">
                     <div>{{doc.name + " - " + doc.prof}}</div>
-                    <img class="chat-btn" src="assets/icons/bubbles.svg" (click)="chat()" width="40px" alt="@"/>
+                    <img class="chat-btn" src="assets/icons/bubbles.svg" (click)="chat(doc)" width="40px" alt="@"/>
                 </div>
             </div>
         </ng-container>
